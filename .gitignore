@@ -1,0 +1,18 @@
+# Icarus Verilog outputs
+*.out
+*.vvp
+sim
+
+# Waveforms
+*.vcd
+
+# Build directories
+build/
+waves/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini

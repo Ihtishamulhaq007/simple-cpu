@@ -1,0 +1,23 @@
+Hello Good afternoon 
+This is the day one of making my own CPU project by Ihtisham ul Haq 
+Today I set up a github repository And linked it to my account.
+I thought it would be good to do the project starting by EDA Playground but my plans changed when I got to know that EDA Playground is not good for long term management 
+Then i downloaded icarus verilogAnd set it up in my VSCode 
+
+I ran a sample test bench using GTK wave opener so that i confirm that i am able to view my graphs correctly 
+Today I will be starting the ALU modeling. I am thinking to at least complete the setup and have a possible ALU running, working correctly. 
+
+I am trying to write all the commands just to execute a test bench on a design so i'll be trying to move to VSC tasks which are meant to automate it all. 
+I was successfully able to create a VS code task that literally does everything in just one go. It takes the test bench and creates a simulation file which then VVP generates a waveform in the dots VCD format and which is opened. 
+
+So, Finally I was able to make the VCD file to be running in VS Code. Now I can continue starting my progress. 
+
+Current status:
+
+GitHub repository created.
+Git workflow working.
+Icarus Verilog installed.
+VS Code workflow configured.
+Simulation verified.
+Waveform viewing verified.
+Ready to begin ALU implementation.

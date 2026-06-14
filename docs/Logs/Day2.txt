@@ -1,0 +1,32 @@
+Good morning, this is day 2 of my CPU project: simple CPU log.
+
+Since the whole workspace was set up today, today to design the CPU, CPU's most important part, the calculator of the CPU that is the ALU. 
+
+This might be one of the few times I've really had a headache understanding some operations 
+
+
+Implemented:
+- ADD
+- SUB
+- AND
+- OR
+- XOR
+- SLL
+- SRL
+- SRA
+- SLT
+- SLTU
+
+Issues found:
+1. Shift operations used full 32-bit operand.
+   Fix: limited shift amount to b[4:0].     TYPECAST
+
+2. SLT was unsigned.
+   Fix: used $signed() comparison.          LEARNT USE OF $unsigned() and $signed()
+
+3. Mode width mismatch.
+   Fix: standardized to 5-bit opcodes.
+
+Next:
+- ALU flags
+- ALU testbench

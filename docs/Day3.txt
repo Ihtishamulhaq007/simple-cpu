@@ -1,3 +1,4 @@
+15/06/2026
 Hello good morning, this is day 3 of my CPU Project.
 I'm Getting A Little Excited Now Because I'm Able To Make Most Of My Stuff Without Thinking, since all the setups have been almost taken care of...
 Now Today The Next Task I Have Is To Do edge Case Tests On My CPUs alu.
@@ -5,6 +6,9 @@ Now Today The Next Task I Have Is To Do edge Case Tests On My CPUs alu.
 New :
 Representation using 32 bit for easier use, like 32'h7FFFFFFF is just max limit for posint;
 The most negative 2CNS number's complement +1 is the number itself!! bcz no +counterpart in bounds
+I found out that carry and overflow isolation are a very good experience to improve the understanding of how stuff works!
 
 Problems:
 alu giving carry(!borrow) 1 i.e borrow = 0 even for case like 4-5
+I found out that the error was in logic, and fixed it;
+

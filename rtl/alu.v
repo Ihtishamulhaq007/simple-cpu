@@ -20,9 +20,9 @@
                 overflow = (a[31] == b[31]) && (a[31] != y[31]);
             end    
             4'b0001 : begin     //SUB
-                temp = {1'b0,a} - {1'b0,b};
-                y = temp[31:0];
-                carry = temp[32];
+                temp = {1'b0,a} - {1'b0,b};    
+                y = temp[31:0];                 
+                carry = ~(a<b);                   
                 overflow = (a[31] != b[31] && (a[31] != y[31]));
             end
             4'b0010 : y = a&b;

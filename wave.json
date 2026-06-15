@@ -1,15 +1,15 @@
 {
   "extensionVersion": "1.5.4",
   "fileName": "c:\\Users\\007ih\\simple-cpu\\wave.vcd",
-  "markerTime": 27,
+  "markerTime": 34,
   "altMarkerTime": null,
   "displayTimeUnit": "s",
   "selectedSignal": {
-    "name": "alu_tb.mode",
-    "msb": 3,
-    "lsb": 0
+    "name": "alu_tb.carry",
+    "msb": -1,
+    "lsb": -1
   },
-  "zoomRatio": 22.377778229890048,
+  "zoomRatio": 15.900000321237664,
   "scrollLeft": 0,
   "defaultPixelTime": 100,
   "displayedSignals": [

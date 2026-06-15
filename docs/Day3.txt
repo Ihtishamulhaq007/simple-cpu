@@ -1,0 +1,7 @@
+Hello good morning, this is day 3 of my CPU Project.
+I'm Getting A Little Excited Now Because I'm Able To Make Most Of My Stuff Without Thinking, since all the setups have been almost taken care of...
+Now Today The Next Task I Have Is To Do edge Case Tests On My CPUs alu.
+
+New :
+Representation using 32 bit for easier use, like 32'h7FFFFFFF is just max limit for posint;
+The most negative 2CNS number's complement +1 is the number itself!! bcz no +counterpart

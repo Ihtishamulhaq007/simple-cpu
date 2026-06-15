@@ -17,3 +17,5 @@ waves/
 Thumbs.db
 Desktop.ini
 *.json
+waves*
+waves.json

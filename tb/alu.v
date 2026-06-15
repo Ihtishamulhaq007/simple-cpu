@@ -30,12 +30,14 @@ endtask
         $dumpfile("wave.vcd");
         $dumpvars(0, alu_tb);
         mode =0;
-        
-        test(4,5,0);
-        test(0,1,1);
-        test(32'h7FFFFFFF,1,0);     //
-        test()
-        
+
+        test(4,5,0);        //ADD , carry
+        test(32'h7FFFFFFF,1,0);     //+ overflow
+        test(32'h80000000,-1,0);     //- overflow 
+        test(32'h80000000, 32'h80000000, 0); //zero 
+
+        test(4,5,1);        //SUB , negative
+        test(0,32'h80000000,1);      //pulling negative's higher bound onto positive
 
         $finish;
     end

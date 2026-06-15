@@ -12,7 +12,7 @@ alu dut (
     .y(y)
 );
 
-initial begin
+initial begin           //these two $ files are necessary for waveform dumping;
     $dumpfile("wave.vcd");
     $dumpvars(0, alu_tb);
 

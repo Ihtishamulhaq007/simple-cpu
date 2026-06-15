@@ -4,7 +4,6 @@ Since the whole workspace was set up today, today to design the CPU, CPU's most 
 
 This might be one of the few times I've really had a headache understanding some operations 
 
-
 Implemented:
 - ADD
 - SUB
@@ -19,14 +18,28 @@ Implemented:
 
 Issues found:
 1. Shift operations used full 32-bit operand.
-   Fix: limited shift amount to b[4:0].     TYPECAST
+   Fix: limited shift amount to b[4:0].   
+ #TYPECAST
 
-2. SLT was unsigned.
-   Fix: used $signed() comparison.          LEARNT USE OF $unsigned() and $signed()
+2. SLT was unsigned.            
+   Fix: used $signed() comparison.         
+ #LEARNT USE OF $unsigned() and $signed()
+  ALL IS UNSIGNED BY DEFAULT
 
-3. Mode width mismatch.
-   Fix: standardized to 5-bit opcodes.
+I got to know that irrespective of the number system we are using the hardware will not change. Basically it is all in our hands to view the interpretation correctly. 
+
+3. default case not assigned
 
 Next:
-- ALU flags
 - ALU testbench
+
+Mistakes : reg for output and wire for input -_-
+
+problm:
+Thought the ALU subtraction result was incorrect because GTKWave showed 4294967295 instead of -1.
+
+due to:
+The waveform was being viewed in unsigned decimal format. The same 32-bit value (0xFFFFFFFF) represents 4294967295 as unsigned and -1 as signed.
+Verified that the ALU output was correct and learned that different signals should be viewed using appropriate formats (e.g., mode as unsigned/binary, signed arithmetic results as signed or hex).
+
+Next edgecases

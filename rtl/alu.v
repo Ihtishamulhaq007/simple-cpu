@@ -1,4 +1,4 @@
-    module alu(
+    module alu_d(
         input [31:0]a,b,
         input [3:0]mode,
         output reg [31:0]y,
@@ -7,7 +7,9 @@
     reg [32:0] temp;
 
     always@(*) begin
-        y=0,carry =0, overflow = 0;
+        y=0;
+        carry =0;
+        overflow = 0;
 
         case(mode)          //<size>'<type><value>
             4'b0000 : begin     //ADD

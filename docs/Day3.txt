@@ -4,4 +4,7 @@ Now Today The Next Task I Have Is To Do edge Case Tests On My CPUs alu.
 
 New :
 Representation using 32 bit for easier use, like 32'h7FFFFFFF is just max limit for posint;
-The most negative 2CNS number's complement +1 is the number itself!! bcz no +counterpart
+The most negative 2CNS number's complement +1 is the number itself!! bcz no +counterpart in bounds
+
+Problems:
+alu giving carry(!borrow) 1 i.e borrow = 0 even for case like 4-5

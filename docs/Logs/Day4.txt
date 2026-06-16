@@ -1,0 +1,24 @@
+Good morning this is day 4 of my CPU project Today I have the task of creating a register file.
+New:
+- always can not be inside if block
+- we can save efficiency by returning 0 on x0 instead of storing it and retrieving it, anyhow it is a default value
+- $clog2() is a useful function:  c for ceiling
+- made changes to alu to incorporate data width as a parameter VERY HAPPY FEELING!
+- accidentally created a dangling if model, nice point for revision!
+
+Next :      REGFILE TESTBEMCH
+Module:
+- Parameterized Register File
+- NUM_REGS = 32 }for further flexibility
+- DATA_WIDTH = 32 }-^
+- 2 asynchronous read ports
+- 1 synchronous write port
+- RISC-V x0 behavior enforced
+New:
+-Learnt the syntax for parameter setting while instanciation
+-Task should have only one statement(use begin-end) AFTER port declarations
+
+Errors:
+- used non-reg variable in always block; conclusion : reg literally never used outside always/initial block{#newDefinition}
+
+To be honest this happened fast pretty fast Well I'll be going ahead

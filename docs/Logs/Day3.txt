@@ -7,8 +7,16 @@ New :
 Representation using 32 bit for easier use, like 32'h7FFFFFFF is just max limit for posint;
 The most negative 2CNS number's complement +1 is the number itself!! bcz no +counterpart in bounds
 I found out that carry and overflow isolation are a very good experience to improve the understanding of how stuff works!
+I now understand the index order while creating arrays!!!   arr[31:0] vs arr[0:31]
 
 Problems:
 alu giving carry(!borrow) 1 i.e borrow = 0 even for case like 4-5
 I found out that the error was in logic, and fixed it;
+
+Thankfully, I was able to complete edge case testing for the major modes of the ALU;
+
+
+NEXT UP:        REGISTER FILE!
+
+I had a breeze revision from my notes and am going to create the rtl file today!
 

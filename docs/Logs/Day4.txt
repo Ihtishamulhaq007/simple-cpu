@@ -22,3 +22,22 @@ Errors:
 - used non-reg variable in always block; conclusion : reg literally never used outside always/initial block{#newDefinition}
 
 To be honest this happened fast pretty fast Well I'll be going ahead
+
+NEXT : PROGRAM COUNTER register
+since I am following RISC-V, this is a very easy block, just a simple 32 bit register...
+- Reset tested
+- Sequential updates tested
+- Multiple arbitrary addresses tested
+- No updates between clock edges
+Errors : misinterpreted ADDR_WIDTH as MEM_DEPTH, since the two are different.
+    mem depht = no of max instructions, 
+    addr width = no of bits needed to index those instructions.
+
+NEXT : INSTRUCTION MEMORY
+
+new : dut.variable can be used to assign values directly into the instance!
+
+spent so much time learning this, but, most of the concept lies in getting memory from another place (which is the program to be ran)
+
+tested edge cases also like : last register and not existing register
+

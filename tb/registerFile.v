@@ -39,7 +39,7 @@ initial begin
     $dumpvars(0, regfile_tb);
 
     clk = 0;      //test(we,rsrc1,rsrc2,wdst,wdat);
-    test(1,1,0,1,3);    //write r3 on clockedge + read r3 instantly
+    test(1,1,0,1,3);    //write r1 on clockedge + read r1 instantly
     test(1,1,0,0,2);    //writing x0 test
     test(1,1,3,3,7);    //DualRead
     test(0,3,3,3,1);    //SanmeRead + write off
@@ -50,7 +50,4 @@ initial begin
     test(1,5,0,5,20);   //edit r5 while viewing it
     $finish;
 end
-
-
-
 endmodule

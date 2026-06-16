@@ -31,7 +31,8 @@ since I am following RISC-V, this is a very easy block, just a simple 32 bit reg
 - No updates between clock edges
 Errors : misinterpreted ADDR_WIDTH as MEM_DEPTH, since the two are different.
     mem depht = no of max instructions, 
-    addr width = no of bits needed to index those instructions.
+    addr width = 32 , set inside computer (max limit)
+    ind width  = no of bits needed to index those instructions.
 
 NEXT : INSTRUCTION MEMORY
 

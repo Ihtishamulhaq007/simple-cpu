@@ -87,3 +87,85 @@ Learned:
 - Wrote TB.
 - Checked waveforms. verified.
 - Verified control signals change correctly for implemented instructions.
+
+
+  NEXT    :     DATA_MEMORY
+Learn : need of byte addresses vs memory index 
+I confused big time :
+ADDR width of the cpu(ArchitechturalAddrWidth) vs ADDR width of memory
+
+WHAT!!!! NEW : This minute difference is what makes 32 bit pc only handle upto 4 gb RAM!!
+SO regardless of memory width, CPU is gonna be 32 bit!
+      reg [31:0] mem [0:255]
+so left side on identifier, makes each element of the array 32 bits, i.e 4 bytes as in a normal C int variable
+
+LOT OF THEORY
+Learned:
+
+- Difference between:
+    Register Address
+    Memory Index
+    Architectural Address
+
+- Register File addresses are not memory addresses.
+    32 registers -> 5-bit register addresses.
+
+- Memory depth determines index width:
+    INDEX_WIDTH = $clog2(MEM_DEPTH)
+
+- Architectural address width is independent of memory depth.
+    RV32I uses 32-bit addresses even if memory contains only 256 words.
+
+- PC stores architectural addresses, not memory indices.
+
+- ALU generates memory addresses for LW/SW.
+    Example:
+        x1 + offset -> 32-bit address
+
+- A memory array index is derived from an architectural address.
+
+- Verilog memories:
+    reg [31:0] Mem [0:255]
+
+    mean:
+        256 entries
+        each entry = 32 bits (4 bytes)
+
+- Byte-addressed architecture
+    vs
+    Word-addressed storage
+
+- Why word memories require:
+      addr >> 2
+
+- Meaning of address bits:
+      addr[1:0]
+    = byte offset within a word
+
+- Why:
+      0x00 -> Mem[0]
+      0x04 -> Mem[1]
+      0x08 -> Mem[2]
+
+- Why a 32-bit address space provides:
+      2^32 bytes
+    = 4 GiB addressable memory
+
+- Architecture defines address space.
+  Implemented memory depth is only a subset of that space.
+
+- Parameterization distinction:
+      ADDR_WIDTH
+      INDEX_WIDTH
+      MEM_DEPTH
+
+  are separate concepts.
+
+
+  FAVV DOUBT :"Why does register need an address width, and doesn't PC depend on memory depth?"
+
+
+NEXT :  Branch/Jump logic block
+  very simple, just got meddled with how jmp and branch are different;
+
+  

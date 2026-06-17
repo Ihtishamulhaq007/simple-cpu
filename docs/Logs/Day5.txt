@@ -1,0 +1,89 @@
+Good morning This is day 5 of my CPU project
+Yesterday we have achieved a lot of RPL and test benches but they were all simple 
+From today we are going to be having little harder it seems; 
+
+NEXT : DECODER : make sense of instructions following standars of ISA RISC V    
+very simple tbh, but I still made a mistake of trying to implement a CU inside because I forgot they are different block.
+  R type for all basic split
+    31        25   20    15    12    7      0
+    +---------+-----+-----+-----+----+------+
+    | funct7  | rs2 | rs1 |f3   | rd |opcode|
+    +---------+-----+-----+-----+----+------+
+Performed simple testbench verification
+
+NEW : SPECIAL TESTBENCH (fetch.v) for integration of ins to decoder!(since they all simple)
+ee felt partly hard but ok
+
+NEXT :  IMMEDIATE GENEERATOR
+
+New: 
+- Even with different opcodes, LW and I-type are all having same formats
+  I type
+    31                  20    15    12   7      0
+    +-------------------+-----+-----+----+------+
+    |     imm[11:0]     | rs1 |f3   | rd |opcode|
+    +-------------------+-----+-----+----+------+
+  S type
+    31      25   20    15    12       7      0
+    +-------+-----+-----+-----+-------+------+
+    |imm[11:5]|rs2| rs1 |f3   |imm[4:0]|opcod|
+    +-------+-----+-----+-----+-------+------+
+  B type
+    31     30     24      19    14      11      8      7        0
+    +------+-------+------+------+------+-------+------+--------+
+    |imm12 |imm10:5|  rs2 | rs1  |  f3  |imm4:1 |imm11 | opcode |
+    +------+-------+------+------+------+-------+------+--------+
+J type
+	31        30:21   20   19:12  11:7 6:0
+	+---------+----+------+----+-------+
+	|imm[20]  |10:1|imm11 |1912|rd|opcode
+	+---------+----+------+----+-------+
+
+Had a headache implementing; though easy, but not convenient;
+
+Error: sign extension bit was not copied into its own place
+
+test bench verified positive and negative IMMEDIATE generation for all I S J and B type
+
+NEXT :      CONTROL UNIT
+
+I found out writing in hex format is far easier mid writing;;
+recognised that LW needs alu for address and it uses an immediate instead of x0
+Fix: ALU needs immediate for the offset factor (4 for half word, 8 for full word none for 1 byte)
+
+-B-type needs 2 registers, thus no chance for immediate
+
+Implemented:
+R-Type control
+I-Type control
+LW
+SW
+BEQ
+BNE
+BLT
+BGE
+JAL
+
+Mistakes:
+
+1. Forgot outputs assigned in always block must be reg.
+
+2. Mixed up some funct7 encodings.
+   ADD/SUB and SRL/SRA needed fixing.
+
+3. Confused myself with MemToReg on SW and Branch.
+   Realized it is dont-care when RegWrite = 0.
+
+4. Branches confused me.
+   Kept thinking ALUSrc should be imm.
+   Eventually understood ALU is comparing rs1 and rs2.
+
+Learned:
+- CU is basically a giant decoder.
+- ALU is also used for address calculation (LW/SW).
+- Branch condition and branch target are seperate things.
+- MemToReg only matters when writing back to RegFile.
+
+- Wrote TB.
+- Checked waveforms. verified.
+- Verified control signals change correctly for implemented instructions.

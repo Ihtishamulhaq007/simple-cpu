@@ -8,8 +8,48 @@ Doubt :
     learnt : ternary operator in argument list
 
 Errors:
+Compilation:
 -rtl/cpuint.v:68: warning: Port 7 (data1) of regfile_d expects 32 bits, got 1.
     Fix: accidentally used addr ports insetead of data
 -rtl/ins.v:13: warning: @* is sensitive to all 256 words in array 'Imem'.
 -rtl/registerFile.v:13: warning: @* is sensitive to all 32 words in array 'regs'.
+-rtl/dmem.v:15: warning: @* is sensitive to all 256 words in array 'Mem'.
     Fix: restrict sensitivity to addresses only
+Functionality
+-DataMemory logic was faulty, pointed out by a faculty
+-MemToReg was unused//writeback_data not used
+    learnt that ALU result is to be stored in registers for normal instrs, and for operations like lw, the alu result is used as an index for ROM to extract data;
+    forgot about regfile's operation of copying from dmem
+    Fix: add assignment utilizing mem2reg and driving write data 
+
+TESTS: 
+ADDI x1, x0, 5          in machine lang : 000000000101 00000 000 00001 0010011
+ADDI x2, x0, 10         000000001010 00000 000 00010 0010011
+ADD  x3, x1, x2         0000000 00010 00001 000 00011 0110011
+
+ADDI x1, x0, 100        h06400093
+ADDI x5, x0, 42         h02A00293
+SW   x5, 8(x1)          h0050A423
+LW   x6, 8(x1)          h0080A303
+
+New :   $dumpvars(0,CPU.RAM.regs[])
+ToBeVerified{ In waveform**
+pc
+instruction
+
+read_data1
+read_data2
+
+alu_result
+
+writeback_data
+
+RAM.regs[1]
+RAM.regs[2]
+RAM.regs[3]
+}
+Errors in testbench:
+-Value of immediate showing up as rs2(address),
+    This is intentional, instead the immediate is the variable intended to be viewed for I-type instructions
+
+NewPlan :   Make a self testing testbench;

@@ -17,8 +17,6 @@ wire [31:0] read_data;
 
 wire [31:0] alu_result;
 
-wire [31:0] mem_data;
-
 wire [31:0] writeback_data;
 
 wire Br, Jm, MemRead, MemWrite, MemToReg, RegWrite;
@@ -26,7 +24,8 @@ wire ALUSrc, carry, zero , negative, overflow;
 wire [6:0] opcode, funct7;
 wire [2:0] funct3;
 wire [3:0] ALUControl;
-wire [31:0] aluinp;
+
+assign writeback_data = (MemToReg) ? read_data : alu_result ;
 
 pc_d PC(
         clk, 
@@ -35,7 +34,7 @@ pc_d PC(
         pc
     );
     
-    instructionMemory_d SYS(
+    instructionMemory_d InsMem(
         pc, 
         instruction
     );
@@ -91,7 +90,7 @@ pc_d PC(
         clk, 
         MemRead, 
         MemWrite, 
-        alu_result , 
+        alu_result,     //addr      in SW
         writeback_data,
         read_data
     );

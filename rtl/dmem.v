@@ -10,7 +10,7 @@ module dmem_d #(
 );
     reg [DATA_WIDTH-1:0] Mem [0:MEM_DEPTH-1];
 
-    always@(*) begin        //Async READ
+    always@(addr or memRead) begin        //Async READ
         if(memRead)
             read_data = Mem[addr>>2];
         else

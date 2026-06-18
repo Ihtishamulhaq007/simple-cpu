@@ -6,17 +6,17 @@ instructionMemory_d #(
     .ADDR_WIDTH(32),
     .DATA_WIDTH(32),
     .MEM_DEPTH(256)
-) uut (
+) dut (
     .pc(pc),
     .instruction(instruction)
 );
 
 initial begin
-    dut.mem[0] = 32'h1;
-    dut.mem[1] = 32'h2;
-    dut.mem[2] = 32'h3;
-    dut.mem[3] = 32'h4;
-    dut.mem[255] = 32;      //last addr
+    dut.Imem[0] = 32'h1;
+    dut.Imem[1] = 32'h2;
+    dut.Imem[2] = 32'h3;
+    dut.Imem[3] = 32'h4;
+    dut.Imem[255] = 32;      //last addr
 
     pc = 0;
     #10;

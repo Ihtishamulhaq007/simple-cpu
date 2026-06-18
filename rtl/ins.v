@@ -7,10 +7,10 @@ module instructionMemory_d #(           //this module is not fuly parameterized
     output reg [31:0] instruction
 );
 
-reg [DATA_WIDTH-1:0] mem [0:MEM_DEPTH-1];
+reg [DATA_WIDTH-1:0] Imem [0:MEM_DEPTH-1];
     
-always@(*) begin
-    instruction = mem[pc>>2]; //0-4-8-12...
+always@(pc) begin
+    instruction = Imem[pc>>2]; //0-4-8-12...
 end
 
 endmodule

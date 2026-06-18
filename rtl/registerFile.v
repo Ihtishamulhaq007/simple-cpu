@@ -8,7 +8,7 @@ module regfile_d #(
 );
     reg [DATA_WIDTH-1 : 0] regs[0: NUM_REGS-1];
     //assign regs[0] = 0;         //RISC-V 
-    always@(*) 
+    always@(read_addr1 or read_addr2) 
         begin     //READ- async
             data1 = read_addr1 ? regs[read_addr1] : 0;
             data2 = read_addr2 ? regs[read_addr2] : 0;

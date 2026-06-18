@@ -1,0 +1,15 @@
+Good morning 
+This is day 6 of my miniCPU project, by today, I have achieved most of the fundamental blocks necessary and today is the day of integration.
+
+NEXT :      CPU INTEGRATION
+Doubt : 
+-who provides the addr lines to DataMemory
+-How can we branch alu for all RISB type ops
+    learnt : ternary operator in argument list
+
+Errors:
+-rtl/cpuint.v:68: warning: Port 7 (data1) of regfile_d expects 32 bits, got 1.
+    Fix: accidentally used addr ports insetead of data
+-rtl/ins.v:13: warning: @* is sensitive to all 256 words in array 'Imem'.
+-rtl/registerFile.v:13: warning: @* is sensitive to all 32 words in array 'regs'.
+    Fix: restrict sensitivity to addresses only

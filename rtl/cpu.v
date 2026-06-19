@@ -5,9 +5,9 @@ module cpuint_d(
 wire [31:0] pc, next_pc;
 wire [31:0] instruction;
 
-wire [4:0] rd;
-wire [4:0] rs1;
-wire [4:0] rs2;
+wire [4:0] write_addr;
+wire [4:0] read_addr1;
+wire [4:0] read_addr2;
 
 wire [31:0] imm;
 
@@ -19,13 +19,13 @@ wire [31:0] alu_result;
 
 wire [31:0] writeback_data;
 
-wire Br, Jm, MemRead, MemWrite, MemToReg, RegWrite;
+wire br, jm, MemRead, MemWrite, MemToReg, RegWrite;
 wire ALUSrc, carry, zero , negative, overflow;
 wire [6:0] opcode, funct7;
 wire [2:0] funct3;
 wire [3:0] ALUControl;
 
-assign writeback_data = (MemToReg) ? read_data : ( Jm ? (pc + 4) : alu_result ) ;
+assign writeback_data = (MemToReg) ? read_data : ( jm ? (pc + 4) : alu_result ) ;
 
 
 
@@ -36,7 +36,9 @@ pc_d PC(
         pc
     );
     
-    instructionMemory_d InsMem(
+    instructionMemory_d  #(
+        .MEM_DEPTH(256)             //NO of max Instruction Lines
+    )InsMem(
         pc, 
         instruction
     );
@@ -44,9 +46,9 @@ pc_d PC(
             instruction, 
             opcode, 
             funct7, 
-            rs1, 
-            rs2, 
-            rd, 
+            read_addr1, 
+            read_addr2, 
+            write_addr, 
             funct3
         );
         immediateGenerator_d img(
@@ -63,16 +65,16 @@ pc_d PC(
         MemWrite, 
         ALUSrc, 
         MemToReg, 
-        Br, 
-        Jm,
+        br, 
+        jm,
         ALUControl
     );
     regfile_d RAM(
         clk, 
         RegWrite, 
-        rs1, 
-        rs2, 
-        rd, 
+        read_addr1, 
+        read_addr2, 
+        write_addr, 
         writeback_data, 
         read_data1, 
         read_data2
@@ -88,7 +90,9 @@ pc_d PC(
         negative
     );
     
-    dmem_d ROM(
+    dmem_d  #(
+        .MEM_DEPTH(256)         //No of storage places
+    )ROM(
         clk, 
         MemRead, 
         MemWrite, 
@@ -100,8 +104,8 @@ bjl_d bjl(
     pc, 
     imm, 
     funct3,
-    Br, 
-    Jm, 
+    br, 
+    jm, 
     zero, 
     negative,
     next_pc

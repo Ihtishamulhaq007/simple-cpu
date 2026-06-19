@@ -1,4 +1,4 @@
-module fetch_tb;
+module fetch_tb;        //extra module to check fetching of instruction
 
 reg  [31:0] pc;
 

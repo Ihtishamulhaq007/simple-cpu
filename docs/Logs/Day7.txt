@@ -26,3 +26,14 @@ assign writeback_data = (MemToReg) ? read_data : ( Jm ? (pc + 4) : alu_result ) 
 ✓ Self Testing Bench for CPUintegration DONE!
 
 NEXT : CLEANUP AND Waveform documentations!
+    Parameterization only restricted to instruction memory and data memory only
+Fix naming consistency		    --
+Remove dead code		        --
+Clean folder structure		    --
+Add module documentation    	--
+Add architecture diagram	    --
+Add instruction coverage table  
+Add waveform screenshots
+Add verification results
+Add bug log
+Add proper README               --

@@ -11,4 +11,18 @@ BNE BGE BLT : success
         -Already has RegWrite = 1 control signal being generated
         -Difficulty doing so with MemToReg being 1'bx, shift to 0 for regwrite= 1;
 assign writeback_data = (MemToReg) ? read_data : ( Jm ? (pc + 4) : alu_result ) ;
-        
+
+
+        ACHIEVEMENT!!!!
+✓ Full datapath integration
+✓ Memory path verification
+✓ Branch mechanism understanding
+✓ JAL implementation
+✓ Writeback redesign
+✓ Real program execution
+✓ Waveform-based verification
+✓ Integration bug discovery and fix
+
+✓ Self Testing Bench for CPUintegration DONE!
+
+NEXT : CLEANUP AND Waveform documentations!

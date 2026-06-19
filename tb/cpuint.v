@@ -47,10 +47,25 @@ initial begin
         $display("Fail : %d", CPU.RAM.regs[3]);
     #47.5;
     if(CPU.ROM.Mem[108>>2]==42 && CPU.RAM.regs[6]==42)
-        $display("SUCCESS!");
+        $display("SW, LW SUCCESS!");
+    #50;
+    if(CPU.RAM.regs[3] == 15 &&   CPU.RAM.regs[4] == 55)
+        $display("BEQ SUCCESS!");
+    else
+        $display("BEQ FAIL");
+    #60;
+    if(CPU.RAM.regs[3] == 99 && CPU.RAM.regs[4] == 55)
+        $display("BNE SUCCESS!");
+    else    
+        $display("BNE FAIL");
 
+    #60;
+    if(CPU.RAM.regs[1] == 10 && CPU.RAM.regs[2] == 1 && CPU.RAM.regs[3] == 55)
+        $display("JAL SUCCESS!");
+    else
+        $display("JAL FAIL");
 
-    #200;       //Give 10-15 units per instruction
+    #40;       //Give 10-15 units per instruction
     $finish;
 end
 

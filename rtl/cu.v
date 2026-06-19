@@ -100,7 +100,7 @@ module cu_d #(
                     MemRead = 0;
                     MemWrite = 1;
                     ALUSrc = 1;
-                    MemToReg = 1'bx;       //dont care
+                    MemToReg = 0;       //dont care
                     Branch = 0;
                     Jump = 0;
 
@@ -113,7 +113,7 @@ module cu_d #(
                     MemRead = 0;
                     MemWrite = 0;
                     ALUSrc = 0;
-                    MemToReg = 1'bx;
+                    MemToReg = 0;
                     Branch = 1;
                     Jump = 0;
 
@@ -134,7 +134,7 @@ module cu_d #(
                     MemRead = 0;
                     MemWrite = 0;
                     ALUSrc = 0;
-                    MemToReg = 1'bx;
+                    MemToReg = 0;
                     Branch = 0;
                     Jump = 1;
                 end

@@ -1,7 +1,7 @@
 module cpuint_tb;
 reg clk,rst;
-//integer i = 1;
-
+integer i = 1;
+//Please check the time in the recorded screenshots in /docs/WaveForms to make more sense, it is mapped accordingly
 cpuint_d CPU(clk, rst);
 always #5 clk = ~clk;
 
@@ -11,20 +11,31 @@ initial begin
         $dumpvars(0,CPU.RAM.regs[1]);
         $dumpvars(0,CPU.RAM.regs[3]);
         $dumpvars(0,CPU.RAM.regs[4]);
+        $dumpvars(0,CPU.RAM.regs[2]);
+        $dumpvars(0,CPU.RAM.regs[5 ]);
         $dumpvars(0,CPU.ROM.Mem[108>>2]);
 
     CPU.InsMem.Imem[0] = 32'h00500093;         //ADDI x1, x0, 5      
         CPU.InsMem.Imem[1] = 32'h00A00113;    //ADDI x2, x0, 10     
-       CPU.InsMem.Imem[2] = 32'h002081B3;    //ADD  x3, x1, x2     
-    CPU.InsMem.Imem[4] = 32'h06400093;
+       CPU.InsMem.Imem[2] = 32'h002081B3;    //ADD  x3, x1, x2     TEST1
+    CPU.InsMem.Imem[4] = 32'h06400093;                          //TEST2
         CPU.InsMem.Imem[5] = 32'h02A00293;
         CPU.InsMem.Imem[6] = 32'h0050A423;
         CPU.InsMem.Imem[7] = 32'h0080A303;
-    CPU.InsMem.Imem[9] = 32'h00100093; // ADDI x1,x0,1
+    CPU.InsMem.Imem[9] = 32'h00100093; // ADDI x1,x0,1          BrancHTest
        CPU.InsMem.Imem[10] = 32'h00100113; // ADDI x2,x0,1
        CPU.InsMem.Imem[11] = 32'h00208463; // BEQ  x1,x2,+8
        CPU.InsMem.Imem[12] = 32'h06300193; // ADDI x3,x0,99
        CPU.InsMem.Imem[13] = 32'h03700213; // ADDI x4,x0,55
+    CPU.InsMem.Imem[15] = 32'h00100093; // ADDI x1,x0,1         
+       CPU.InsMem.Imem[16] = 32'h00100113; // ADDI x2,x0,1
+       CPU.InsMem.Imem[17] = 32'h00209463; // BNE  x1,x2,+8
+       CPU.InsMem.Imem[18] = 32'h06300193; // ADDI x3,x0,99
+       CPU.InsMem.Imem[19] = 32'h03700213; // ADDI x4,x0,55
+    CPU.InsMem.Imem[21] = 32'h00A00093; // ADDI x1,x0,10        JAL_TEST
+        CPU.InsMem.Imem[22] = 32'h008002EF; // JAL  x5,+8
+        CPU.InsMem.Imem[23] = 32'h06300113; // ADDI x2,x0,99
+        CPU.InsMem.Imem[24] = 32'h03700193; // ADDI x3,x0,55
     clk = 0;
         rst = 1;
         #10 rst = 0;        
@@ -39,11 +50,11 @@ initial begin
         $display("SUCCESS!");
 
 
-    #100       //Give 10-15 units per instruction
+    #200;       //Give 10-15 units per instruction
     $finish;
 end
 
-/*always@(negedge clk)
+always@(negedge clk)
     begin
         $display("\n\tInstruction %d", i++);
        case(CPU.CU.opcode)
@@ -125,6 +136,6 @@ end
 
         endcase 
     end
-*/
+
 
 endmodule

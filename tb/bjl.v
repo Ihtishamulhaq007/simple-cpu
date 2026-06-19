@@ -1,7 +1,8 @@
 module bjl_tb;
 
 reg [31:0] pc, imm;
-reg Br, Jmp, Zero;
+reg Br, Jmp, Zero, Negative;
+reg [2:0]funct3;
 wire [31:0] next_pc;
 
 bjl_d DUT(
@@ -10,7 +11,9 @@ bjl_d DUT(
     .Br(Br),
     .Jmp(Jmp),
     .Zero(Zero),
-    .next_pc(next_pc)
+    .next_pc(next_pc),
+    .funct3(funct3),
+    .negative(Negative)
 );
 
 initial begin
@@ -22,17 +25,21 @@ initial begin
 
     // Normal
     Br = 0;
+    funct3 = 3'b000;
     Jmp = 0;
     Zero = 0;
+    
     #10;
 
     // BEQ taken
+    funct3 = 3'b000;
     Br = 1;
     Jmp = 0;
     Zero = 1;
     #10;
 
     // BEQ not taken
+    funct3 = 3'b000;
     Br = 1;
     Jmp = 0;
     Zero = 0;
@@ -48,6 +55,52 @@ initial begin
     Br = 1;
     Jmp = 1;
     Zero = 1;
+    #10;
+    
+    // BNE taken
+    funct3 = 3'b001;
+    Br = 1;
+    Jmp = 0; 
+    Zero = 1;
+    #10;
+    
+    // BNE not taken
+    funct3 = 3'b001;
+    Br = 1;
+    Jmp = 0; 
+    Zero = 0;
+    #10;
+
+    //BLT taken
+    funct3 = 3'b100;
+    Br = 1;
+    Jmp = 0;
+    Zero = 0;
+    Negative = 1;
+    #10;
+
+    //BLT not taken
+    funct3 = 3'b100;
+    Br = 1;
+    Jmp = 0;
+    Zero = 0;
+    Negative = 0;
+    #10;
+
+    //BGE taken
+    funct3 = 3'b101;
+    Br = 1;
+    Jmp = 0;
+    Zero = 0;
+    Negative = 1;
+    #10;
+
+    //BGE not taken
+    funct3 = 3'b101;
+    Br = 1;
+    Jmp = 0;
+    Zero = 0;
+    Negative = 0;
     #10;
 
     $finish;

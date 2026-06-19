@@ -1,0 +1,14 @@
+Good morning This is the 7th day of the CPU project that it's a week completed now.
+Yesterday I was able to complete a test bench for the integration of the whole CPU and thankfully it worked but it lacked some features like JAL, BNE and other typa stuffs.
+Today I will be implementing all mini stuff, and maybe testing them on the CPU.
+
+Implement :  BNE BLT BGE JAL instructions;
+    -Added if else ladder for all other candidates of branchtype;
+    -New argument "funct3" to differentiate between the branchtypes
+    -added required flags in CPUintegration module
+BNE BGE BLT : success
+    JAL : add a choice of setting writeback_data to current pc + 4 value, which is linking
+        -Already has RegWrite = 1 control signal being generated
+        -Difficulty doing so with MemToReg being 1'bx, shift to 0 for regwrite= 1;
+assign writeback_data = (MemToReg) ? read_data : ( Jm ? (pc + 4) : alu_result ) ;
+        

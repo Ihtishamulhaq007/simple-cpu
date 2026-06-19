@@ -25,7 +25,9 @@ wire [6:0] opcode, funct7;
 wire [2:0] funct3;
 wire [3:0] ALUControl;
 
-assign writeback_data = (MemToReg) ? read_data : alu_result ;
+assign writeback_data = (MemToReg) ? read_data : ( Jm ? (pc + 4) : alu_result ) ;
+
+
 
 pc_d PC(
         clk, 
@@ -97,9 +99,11 @@ pc_d PC(
 bjl_d bjl(
     pc, 
     imm, 
+    funct3,
     Br, 
     Jm, 
     zero, 
+    negative,
     next_pc
 );
 endmodule

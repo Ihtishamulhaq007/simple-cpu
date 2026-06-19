@@ -91,7 +91,7 @@ pc_d PC(
         MemRead, 
         MemWrite, 
         alu_result,     //addr      in SW
-        writeback_data,
+        read_data2,
         read_data
     );
 bjl_d bjl(

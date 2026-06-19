@@ -51,5 +51,24 @@ RAM.regs[3]
 Errors in testbench:
 -Value of immediate showing up as rs2(address),
     This is intentional, instead the immediate is the variable intended to be viewed for I-type instructions
+-1st instruction is being X
+    Cause: Misplacement of program memory's initialization
+-SW is not working as intended
+    All connections are proper..(more 3 hours checking...)
+    Cause: wrong writeback_data pin used in CPU_d.v
+    Fix: instead of read_data2, writeback_data(regfile) was used
+    Still not gone Cause: wrong index index is addr>>2 not addr
+    Silly mistake
 
-NewPlan :   Make a self testing testbench;
+Hard verification:
+ADDI x1,x0,1
+ADDI x2,x0,1
+BEQ  x1,x2,+8
+ADDI x3,x0,99
+ADDI x4,x0,55       
+
+ADDI x1,x0,10   after implementing JAL
+JAL x5,+8
+ADDI x2,x0,99
+ADDI x3,x0,55
+

@@ -6,6 +6,7 @@ I did not much today, but that was it:
 -CLEANUP
 -documentation
 -presentation
+-matrices
 
 all these non-coding tasks took me a while, but I sure did them;
 

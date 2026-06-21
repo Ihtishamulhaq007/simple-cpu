@@ -18,6 +18,7 @@ initial begin
     $dumpvars(0,dmem_tb);
     clk = 0;
 
+    memRead = 0;
     memWrite = 1;
     write_data = 32'd27;
     addr = 32'h00000000;

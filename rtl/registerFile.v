@@ -9,7 +9,7 @@ module regfile_d #(
     reg [DATA_WIDTH-1 : 0] regs[0: NUM_REGS-1];
     // regs[0] may remain uninitialized internally.
     // Reads from x0 are forced to return 0 by the read logic.
-    always@(read_addr1 or read_addr2) 
+    always@(*) 
         begin     //READ- async
             data1 = read_addr1 ? regs[read_addr1] : 0;
             data2 = read_addr2 ? regs[read_addr2] : 0;

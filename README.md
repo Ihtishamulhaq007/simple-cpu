@@ -57,9 +57,6 @@ Fetch
 
 * [ALU Verification](Verification/alu.md)
 * [Register File Verification](Verification/regfile.md)
-* [Program Counter Verification](Verification/pc.md)
-* [Instruction Memory Verification](Verification/imem.md)
-* [Immediate Generator Verification](Verification/immgen.md)
 * [Control Unit Verification](Verification/cu.md)
 * [Data Memory Verification](Verification/dmem.md)
 * [Branch & Jump Verification](Verification/bjl.md)

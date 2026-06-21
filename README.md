@@ -22,7 +22,7 @@ The project was developed from individual RTL modules through full CPU integrati
 
 ## Architecture
 
-![CPU Datapath](images/cpu_datapath.png)
+![CPU Datapath](docs/images/cpu_datapath.png)
 
 Instruction flow:
 

@@ -305,6 +305,10 @@ Program flow control.
 Sequential Execution
 Conditional Branches
 Unconditional Jumps
+Internally computes:
+- pc + 4
+- pc + imm
+- branch/jump decisions
 ```
 
 ### Outputs

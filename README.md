@@ -59,7 +59,7 @@ Fetch
 * [Register File Verification](Verification/regfile.md)
 * [Control Unit Verification](Verification/cu.md)
 * [Data Memory Verification](Verification/dmem.md)
-* [Branch & Jump Verification](Verification/bjl.md)
+* [Branch & Jump Verification](Verification/branchjump.md)
 * [CPU-Level Verification](Verification/cpu.md)
 
 ---

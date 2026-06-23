@@ -1,6 +1,6 @@
 Good morning, today is day 9 of this CPU project.
 
-And supposedly, it's done...
+And supposedly, it's done...for the RTL part...
 
 I did not much today, but that was it:
 -CLEANUP
@@ -13,6 +13,6 @@ all these non-coding tasks took me a while, but I sure did them;
 All right, now is the time I freeze this repository...
 
 But I will copy this into another one for my extended project, 
-
+Nevermind, instead of copying I will refactor this same repository for better;
 
 Thank you for reading!!!

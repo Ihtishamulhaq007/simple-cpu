@@ -1,0 +1,68 @@
+Greetings, this is day 11 of my CPU project;
+
+I took one fine rest day, and am now well rested to do the UART integration now!
+
+Next :          UART module
+
+So this took a lot more time than normal to do...
+
+
+        UART TRANSMITTER (TX)
+
+Initially thought it'd be a quick module.~
+Nope.
+By FAR the hardest one till now.
+
+New:
+- UART is simply Start -> Data -> Stop
+- Data is sent LSB first.
+- One byte transmission takes:
+    CyclesPerBit × (1 + 8 + 1)
+- baud_tick should only be a ONE clock pulse.
+- uart_start is also only a ONE clock pulse, not held till transmission finishes.
+- Learnt that there is literally no need for separate load/shift control signals; the FSM itself can own the shift register.
+- Finally got why sequential circuits feel much harder than combinational ones...
+
+Module:
+- Parameterized UART Transmitter
+- Parameterized CLOCK_FREQUENCY
+- Parameterized BAUD_RATE
+- Baud Generator
+- UART FSM
+- Shift Register
+- Busy Signal
+- Configurable CyclesPerBit using $clog2()
+
+Errors:
+- Made the baud counter twice ☠
+    - instantiated a counter
+    - then manually wrote another one
+    - ended up driving the same signal twice.
+- Accidentally made load and shift stay HIGH forever.
+- Realized START state lasts 434 clocks... so I was loading the data 434 TIMES 😭
+- Completely mixed "entering a state" with "being inside a state".
+- Thought the FSM was broken...
+    simulation literally ended before STOP finished.
+- Forgot to probe internal signals.
+    cst, bits_sent and shift_reg instantly exposed what was actually happening.
+- Took me way longer than expected to realize GTKWave debugging >>> staring at code.
+
+Testbench:
+- 50 MHz clock
+- Reset
+- Sent 8'hA5
+- Verified:
+    - Start bit
+    - LSB-first transmission
+    - Stop bit
+    - uart_busy behaviour
+    - Correct state transitions
+    - Correct shifting
+
+To be honest...
+This module humbled me ☠
+
+Most of the difficulty wasn't Verilog.
+It was thinking sequentially instead of combinationally.
+
+NEXT : CPU + UART Integration

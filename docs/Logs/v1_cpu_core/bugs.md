@@ -14,4 +14,13 @@ Fix:
 Why:    I was threatened by the error   and took a hasty decision!
     -rtl/registerFile.v:13: warning: @* is sensitive to all 32 words in array 'regs'.
 
- 
+## Bug #3:     
+### Reported by teacher
+    BLT always falls through (never branches). BGE always branches regardless of operands.
+Cause:
+    used "negative" flag in BJL module, while BLT/BGE output 1 or 0, which should use the "zero" flag
+Fix:
+    change flag in bjl.v to zero, 
+    change ports in cpu.v(optional)
+Why: 
+    Due to haste and inexperience, test case was missed in waveform, added testbest case

@@ -65,15 +65,13 @@ initial begin
     br = 1;
     jm = 0;
     Zero = 0;
-    Negative = 1;
     #10;
 
     //BLT not taken
     funct3 = 3'b100;
     br = 1;
     jm = 0;
-    Zero = 0;
-    Negative = 0;
+    Zero = 1;
     #10;
 
     //BGE taken
@@ -81,15 +79,14 @@ initial begin
     br = 1;
     jm = 0;
     Zero = 0;
-    Negative = 1;
+    
     #10;
 
     //BGE not taken
     funct3 = 3'b101;
     br = 1;
     jm = 0;
-    Zero = 0;
-    Negative = 0;
+    Zero = 1;
 
     #10; 
         // JAL

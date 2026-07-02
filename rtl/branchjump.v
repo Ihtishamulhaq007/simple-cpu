@@ -12,9 +12,9 @@ always@(*) begin
         next_pc = pc + imm;
     else if(br && ~Zero && funct3 == 3'b001)        //BNE
         next_pc = pc + imm;
-    else if(br && negative && funct3 == 3'b100)     //BLT
+    else if(br && ~Zero && funct3 == 3'b100)     //BLT
         next_pc = pc + imm;
-    else if(br && ~negative && funct3 == 3'b101)    //BGE
+    else if(br && Zero && funct3 == 3'b101)    //BGE
         next_pc = pc + imm;
     else
         next_pc = pc + 4;
